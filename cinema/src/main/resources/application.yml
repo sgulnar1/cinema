@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: cinema
+  profiles:
+    include:
+      - db
+
