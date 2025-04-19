@@ -30,4 +30,5 @@ public class Movie {
     @ManyToMany
     private List<Format> format;
     private Integer limitAge;
+    private Integer orderNumber;
 }

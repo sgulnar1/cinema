@@ -15,4 +15,6 @@ public class Cinema {
     @OneToMany
     @JoinColumn(name = "cinema")
     private List<CinemaTranslation> translations;
+    private Integer orderNumber;
+    private Boolean all = false;
 }
