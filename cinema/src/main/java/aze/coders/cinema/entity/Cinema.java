@@ -16,5 +16,5 @@ public class Cinema {
     @JoinColumn(name = "cinema")
     private List<CinemaTranslation> translations;
     private Integer orderNumber;
-    private Boolean all = false;
+    private Boolean allItems = false;
 }

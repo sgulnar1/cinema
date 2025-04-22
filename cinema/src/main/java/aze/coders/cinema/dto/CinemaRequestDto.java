@@ -8,5 +8,5 @@ import java.util.List;
 public class CinemaRequestDto {
     private List<CinemaTranslationRequestDto> translations;
     private Integer orderNumber;
-    private Boolean all;
+    private Boolean allItems;
 }

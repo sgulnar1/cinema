@@ -9,5 +9,5 @@ public class CinemaResponseDto {
     private Integer id;
     private List<CinemaTranslationResponseDto> translations;
     private Integer orderNumber;
-    private Boolean all;
+    private Boolean allItems;
 }
