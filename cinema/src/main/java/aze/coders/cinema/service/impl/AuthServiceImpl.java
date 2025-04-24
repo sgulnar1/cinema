@@ -1,5 +1,6 @@
 package aze.coders.cinema.service.impl;
 
+import aze.coders.cinema.config.EnhancedObjectMapper;
 import aze.coders.cinema.config.JwtFilter;
 import aze.coders.cinema.dto.RefreshTokenDto;
 import aze.coders.cinema.entity.RefreshToken;
@@ -10,7 +11,6 @@ import aze.coders.cinema.repository.RefreshTokenRepository;
 import aze.coders.cinema.service.AuthService;
 import aze.coders.cinema.service.JwtService;
 import aze.coders.cinema.service.UserService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -36,7 +36,7 @@ public class AuthServiceImpl implements AuthService {
     private Integer accessExpireTime;
     @Value("${spring.security.jwt.refresh-expire-time}")
     private Integer refreshExpireTime;
-    private final ObjectMapper objectMapper;
+    private final EnhancedObjectMapper mapper;
 
     @Override
     public SignInResponse signIn(SignInRequest signInRequest) {
@@ -51,7 +51,7 @@ public class AuthServiceImpl implements AuthService {
     private RefreshTokenDto issueRefreshToken(String username) {
         RefreshToken refreshToken = new RefreshToken(UUID.randomUUID().toString(), username, true, new Date(), new Date(System.currentTimeMillis() + refreshExpireTime));
         refreshTokenRepository.save(refreshToken);
-        return objectMapper.convertValue(refreshToken, RefreshTokenDto.class);
+        return mapper.convertValue(refreshToken, RefreshTokenDto.class);
     }
 
     @Override

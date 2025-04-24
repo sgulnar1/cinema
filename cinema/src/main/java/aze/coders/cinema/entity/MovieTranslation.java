@@ -1,5 +1,6 @@
 package aze.coders.cinema.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -11,6 +12,7 @@ public class MovieTranslation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @ManyToOne
+    @JsonIgnore
     private Movie movie;
     @ManyToOne
     private Language language;

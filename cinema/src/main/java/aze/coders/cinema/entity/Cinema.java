@@ -12,8 +12,7 @@ public class Cinema {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @OneToMany
-    @JoinColumn(name = "cinema")
+    @OneToMany(mappedBy = "cinema", cascade = CascadeType.ALL)
     private List<CinemaTranslation> translations;
     private Integer orderNumber;
     private Boolean allItems = false;

@@ -1,5 +1,6 @@
 package aze.coders.cinema.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -14,5 +15,6 @@ public class MovieLanguageTranslation {
     private Language language;
     private String lang;
     @ManyToOne
+    @JsonIgnore
     private MovieLanguage movieLanguage;
 }

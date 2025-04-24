@@ -1,5 +1,6 @@
 package aze.coders.cinema.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,6 +12,7 @@ public class CountryTranslation {
     @ManyToOne
     private Language language;
     private String name;
+    @JsonIgnore
     @ManyToOne
     private Country country;
 }

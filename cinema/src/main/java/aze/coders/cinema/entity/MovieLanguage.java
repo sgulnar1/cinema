@@ -10,8 +10,7 @@ public class MovieLanguage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @OneToMany
-    @JoinColumn(name = "movieLanguage")
+    @OneToMany(mappedBy = "movieLanguage", cascade = CascadeType.ALL)
     private List<MovieLanguageTranslation> movieLanguageTranslation;
 
 }

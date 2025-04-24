@@ -12,9 +12,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 //TODO
+//Object mapper set null value
 //auth sign out
 //register - admin/user, role user - admin, crud user authorization
-//request & response body is null
+
 
 @SpringBootApplication
 @RequiredArgsConstructor

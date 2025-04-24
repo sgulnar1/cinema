@@ -1,39 +1,37 @@
 package aze.coders.cinema.service.impl;
 
-import aze.coders.cinema.dto.CinemaRequestDto;
-import aze.coders.cinema.dto.CinemaResponseDto;
+import aze.coders.cinema.config.EnhancedObjectMapper;
+import aze.coders.cinema.dto.CinemaDto;
 import aze.coders.cinema.entity.Cinema;
 import aze.coders.cinema.enums.ErrorCode;
 import aze.coders.cinema.exception.NotFoundException;
 import aze.coders.cinema.repository.CinemaRepository;
 import aze.coders.cinema.service.CinemaService;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class CinemaServiceImpl implements CinemaService {
     private final CinemaRepository cinemaRepository;
-    private ObjectMapper mapper;
+    private final EnhancedObjectMapper mapper;
 
     @Override
-    public List<CinemaResponseDto> getCinemas() {
-        return mapper.convertValue(cinemaRepository.findAll(), new TypeReference<List<CinemaResponseDto>>() {
-        });
+    public List<CinemaDto> getCinemas() {
+        return Arrays.asList(mapper.convertValue(cinemaRepository.findAll(), CinemaDto[].class));
     }
 
     @Override
-    public CinemaResponseDto getCinemaById(Integer id) {
-        return mapper.convertValue(findById(id), CinemaResponseDto.class);
+    public CinemaDto getCinemaById(Integer id) {
+        return mapper.convertValue(findById(id), CinemaDto.class);
     }
 
     @Override
-    public CinemaResponseDto createCinema(CinemaRequestDto cinemaRequestDto) {
-        return mapper.convertValue(cinemaRepository.save(mapper.convertValue(cinemaRequestDto, Cinema.class)), CinemaResponseDto.class);
+    public CinemaDto createCinema(CinemaDto cinemaDto) {
+        return mapper.convertValue(cinemaRepository.save(mapper.convertValue(cinemaDto, Cinema.class)), CinemaDto.class);
     }
 
     @Override
@@ -43,11 +41,11 @@ public class CinemaServiceImpl implements CinemaService {
     }
 
     @Override
-    public CinemaResponseDto updateCinema(Integer id, CinemaRequestDto cinemaRequestDto) {
+    public CinemaDto updateCinema(Integer id, CinemaDto cinemaDto) {
         Cinema findCinema = findById(id);
-        Cinema cinema = mapper.convertValue(cinemaRequestDto, Cinema.class);
+        Cinema cinema = mapper.convertValue(cinemaDto, Cinema.class);
         cinema.setId(findCinema.getId());
-        return mapper.convertValue(cinemaRepository.save(cinema), CinemaResponseDto.class);
+        return mapper.convertValue(cinemaRepository.save(cinema), CinemaDto.class);
     }
 
     private Cinema findById(Integer id) {

@@ -12,7 +12,6 @@ public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @OneToMany
-    @JoinColumn(name="country")
+    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
     private List<CountryTranslation> translations;
 }

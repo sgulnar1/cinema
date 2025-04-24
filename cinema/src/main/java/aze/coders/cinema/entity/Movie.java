@@ -13,8 +13,7 @@ public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @OneToMany
-    @JoinColumn(name = "movie")
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
     private List<MovieTranslation> translations;
     private Date startDate;
     private Date endDate;

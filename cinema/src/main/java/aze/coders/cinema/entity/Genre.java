@@ -13,7 +13,6 @@ public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @OneToMany
-    @JoinColumn(name = "genre")
+    @OneToMany(mappedBy = "genre", cascade = CascadeType.ALL)
     private List<GenreTranslation> trasnlations;
 }

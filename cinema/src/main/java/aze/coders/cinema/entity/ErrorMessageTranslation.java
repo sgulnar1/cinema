@@ -1,5 +1,6 @@
 package aze.coders.cinema.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -13,6 +14,7 @@ public class ErrorMessageTranslation {
     @ManyToOne
     private Language language;
     @ManyToOne
+    @JsonIgnore
     private ErrorMessage errorMessage;
     private String message;
 }

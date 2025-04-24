@@ -15,6 +15,6 @@ public class ErrorMessage {
     private Integer id;
     @Enumerated(EnumType.STRING)
     private ErrorCode errorCode;
-    @OneToMany(mappedBy = "errorMessage")
+    @OneToMany(mappedBy = "errorMessage", cascade = CascadeType.ALL)
     private List<ErrorMessageTranslation> translations;
 }

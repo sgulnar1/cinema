@@ -22,11 +22,12 @@ public class LoggingFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         ContentCachingRequestWrapper requestWrapper = new ContentCachingRequestWrapper(request);
         ContentCachingResponseWrapper responseWrapper = new ContentCachingResponseWrapper(response);
-        filterChain.doFilter(request, response);
+        filterChain.doFilter(requestWrapper, responseWrapper);
         logger.info("request body: {}, requestWrapper: {}", request.getInputStream().read(), requestWrapper.getContentAsString());
         logger.info("request method: {}, uri: {}, queryParams: {}, headers: {}, body: {}",
                 requestWrapper.getMethod(), requestWrapper.getRequestURI(), requestWrapper.getQueryString(), getHeader(requestWrapper), requestWrapper.getContentAsString());
         logger.info("response status: {}, body: {}", responseWrapper.getStatus(), getBody(responseWrapper.getContentAsByteArray()));
+        responseWrapper.copyBodyToResponse();
     }
 
     private String getBody(byte[] buf) {
